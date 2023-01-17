@@ -1,0 +1,21 @@
+*
+{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Poppins', sans-serif;
+}
+body
+{
+    min-height: 100vh;
+    background: linear-gradient(#b9c1c0,#7597de) ;
+}
+.center
+/* how to name it: .xxx  xxx keep the same as before */
+{
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+

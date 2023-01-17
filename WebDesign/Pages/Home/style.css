@@ -5,8 +5,28 @@ padding: 0;
 box-sizing: border-box;
 font-family: 'Poppins', sans-serif;
 }
-.header
+body
 {
     min-height: 100vh;
     background: linear-gradient(#2b1055,#7597de) ;
+}
+header
+{
+    position: absolute;
+    top: o;
+    left: 0;
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    /* Displays an element as a block-level flex container */
+
+    justify-content: space-between;
+    /* Distribute items evenly
+    The first item is flush with the start,
+    the last is flush with the end */
+
+    /* 这些项目沿主轴均匀分布在对齐容器内。每对相邻项目之间的间距是相同的。
+    第一项与 main-start 边缘齐平，最后一项与 main-end 边缘齐平。 */
+
+    align-items: center;
 }
