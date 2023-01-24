@@ -1,1 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Homework 01-10</title>
+        <style>
 
+        .s1{
+            z-index: -10;
+        }
+
+        .track {
+        fill:rgb(233,234,222);
+        stroke: rgb(233,234,222);
+        stroke-width: 2.5;
+        }
+
+        .round {
+        stroke-linejoin: round;
+        }
+       
+     </style>
+    </head>
+    <body> 
+    <svg width="1100" height="740">
+
+        <defs>
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:rgb(206,189,145);stop-opacity:1" />
+              <stop offset="50%" style="stop-color:rgb(230,226,217);stop-opacity:1" />
+              <stop offset="100%" style="stop-color:rgb(226,202,171);stop-opacity:1" />
+            </linearGradient>
+
+
+            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="20%" style="stop-color:rgb(234,226,212);stop-opacity:1" />
+              <stop offset="50%" style="stop-color:rgb(227,207,143);stop-opacity:1" />
+              <stop offset="100%" style="stop-color:rgb(234,226,212);stop-opacity:1" />
+            </linearGradient>
+          </defs>
+
+        <rect width="1058" height="728" fill="url(#grad1)"/>
+        <polygon class="s1" points="341,13 464,650 823,321" fill="rgb(218,206,154)" />
+        <ellipse cx="181" cy="219" rx="60" ry="54" fill="rgb(40,49,77)"/>
+        <polygon points="266,261 460,299 134,700 26,377" stroke="rgb(150,148,117)" fill="rgb(96,68,35)" stroke-width="2" />
+        <polygon points="270,146 275,154 98,305 93,300" fill="rgb(22,20,21)"/>
+        <polygon points="508,60 498,132 584,123" fill="rgb(188,74,46)"/>
+        <polygon points="455,363 450,443 515,383" fill="rgb(187,55,36)"/>
+        <circle cx="863" cy="40" r="40" fill="rgb(229,218,209)"/>
+        <circle cx="860" cy="38" r="28" fill="rgb(214,123,55)"/>
+        <polygon points="846,0 836,3 885,107 893,103" fill="rgb(35,41,40)"/>
+        <path d="M 476 344 Q 432 84, 699 140" stroke="black" stroke-width="3" fill="transparent"/>
+        <circle cx="220" cy="216" r="5" fill="rgb(217,73,37)"/>
+        <circle cx="186" cy="173" r="4" fill="rgb(220,214,138)"/>
+        <circle cx="197" cy="193" r="3" fill="rgb(153,157,182)"/>
+        <circle cx="163" cy="211" r="4.5" fill="rgb(219,174,64)"/>
+        <circle cx="135" cy="196" r="3" fill="rgb(137,154,139)"/>
+        <circle cx="140" cy="234" r="3" fill="rgb(205,153,135)"/>
+        <circle cx="842" cy="327" r="200" fill="black"/>  
+        <polygon points="694,285 686,363 714,372 713,386 711,394 650,419 676,475 913,437 913,434 907,430 915,429 910,420 923,420 927,416 926,414" stroke="black" stroke-width="2" fill="url(#grad2)"/>
+        <path d="M 741 379 Q 781 258, 819 375" stroke="black" stroke-width="3" fill="transparent"/>
+        <polygon points="564,315 636,265 668,318 590,368" fill="black"/>
+        <polygon class="track round" points="576,310 582,306 587,313 581,318"/>
+        <polygon class="track round" points="585,303 593,299 598,306 590,311"/>
+        <polygon points="85,704 91,710 912,4 907,0" fill="black"/>
+        <polygon points="123,334 334,335 233,577 66,486" fill="url(#grad2)"/>
+        <circle cx="703" cy="252" r="25" fill="rgb(230,226,217)" />
+        <circle cx="703" cy="252" r="20" fill="black" />
+        <circle cx="703" cy="252" r="7" fill="rgb(140,170,77)" />
+        <polygon points="393,550 426,646 455,611 438,519" fill="rgb(52,77,42)"/>
+        <polygon points="455,611 438,519 476,493 518,534" fill="rgb(74,88,82)"/>
+           
+    </svg>
+
+
+    </body>

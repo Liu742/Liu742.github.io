@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Simple SVG Path</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+</head>
+<body>
+
+  <style>
+    body {
+      font-family: Helvetica Neue;
+    }
+
+    svg {
+      border: solid 1px #ccc;
+      background-color: #fff;
+    }
+
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: #ccc;
+        shape-rendering: crispEdges;
+    }
+
+    .axis text {
+        font-family: sans-serif;
+        font-size: 11px;
+    }
+
+    .route {
+      fill: none;
+      stroke: red;
+      stroke-width: 2px;
+    }
+
+    /* Points */
+    circle.main {
+      fill: #EDC951;
+      stroke: #CC333F;
+      stroke-width: 1px;
+    }
+
+    circle.control {
+      fill: white;
+      stroke: #00A0B0;
+    }
+
+    .control-line {
+      stroke-width: 1px;
+      stroke: #00A0B0;
+      stroke-dasharray: 1,1;
+    }
+
+    .curve {
+      fill: none;
+      stroke: #CC333F;
+      stroke-width: 2px;
+    }
+
+    pre {
+      font-family: Courier;
+    }
+  </style>
+
+  <svg width="400" height="400">
+    <g class="xaxis axis"></g>
+    <g class="yaxis axis"></g>
+    <g class="paths"></g>
+  </svg>
+
+  <h1>SVG Path</h1>
+  <pre></pre>
+
+  <script>
+    // Grid and SVG Setup
+    // ------------------
+
+    var width  = 400,
+        height = 400,
+        margin = 30;
+
+    var lines = d3.range(-20, 20);
+
+    var svg = d3.select('svg'),
+        xaxis = svg.select('g.xaxis'),
+        yaxis = svg.select('g.yaxis');
+
+    // Translate the groups for the axis
+    xaxis.attr('transform', function() {
+      var dx = margin,
+          dy = height - margin;
+      return 'translate(' + [dx, dy] + ')';
+    });
+
+    yaxis.attr('transform', function() {
+      var dx = margin,
+          dy = margin;
+      return 'translate(' + [dx, dy] + ')';
+    });
+
+    var xScale = d3.scale.linear()
+      .domain(d3.extent(lines))
+      .range([0, width - 2 * margin]);
+
+    var yScale = d3.scale.linear()
+      .domain(d3.extent(lines))
+      .range([0, height - 2 * margin]);
+
+    var xAxis = d3.svg.axis()
+      .orient('bottom')
+      .scale(xScale)
+      .tickSize(-width + 2 * margin);
+
+    var yAxis = d3.svg.axis()
+      .orient('left')
+      .scale(yScale)
+      .tickSize(-height + 2 * margin);
+
+    xaxis.call(xAxis);
+    yaxis.call(yAxis);
+
+    // Compute the path string
+    function computePath(points) {
+
+      function p(point) {
+        return xScale(point.x) + ' ' + yScale(point.y);
+      }
+
+      var p1 = p(points[0]),
+          c1 = p(points[1]),
+          p2 = p(points[2]),
+          c2 = p(points[3]);
+
+      return 'M ' + p1 + 'C ' + [c1, c2, p2].join(',');
+    }
+
+    function computePathText(points) {
+
+      function p(point) {
+        return d3.round(point.x, 2) + ' ' + d3.round(point.y, 2);
+      }
+
+      var p1 = p(points[0]),
+          c1 = p(points[1]),
+          p2 = p(points[2]),
+          c2 = p(points[3]);
+
+      return 'M ' + p1 + ' C ' + [c1, c2, p2].join(', ');
+    }
+
+    // Path Editor
+
+    var points = [
+      {x:  5, y:   5, type: 'main'},
+      {x: 10, y: -15, type: 'control'},
+      {x: 10, y:  10, type: 'main'},
+      {x: 15, y:  10, type: 'control'}
+    ];
+
+    var lineData = [
+      [points[0], points[1]],
+      [points[2], points[3]]
+    ];
+
+
+    var gPaths  = svg.select('g.paths'),
+        circles = gPaths.selectAll('circle').data(points);
+    var lines = gPaths.selectAll('line').data(lineData);
+
+    // Tension Lines
+    lines.enter().append('line').classed('control-line', true);
+
+    lines
+      .attr('x1', function(d) { return xScale(d[0].x); })
+      .attr('y1', function(d) { return yScale(d[0].y); })
+      .attr('x2', function(d) { return xScale(d[1].x); })
+      .attr('y2', function(d) { return yScale(d[1].y); });
+
+    lines.exit().remove();
+
+    // Bezier Curve
+    var curve = gPaths.selectAll('path.curve').data([points]);
+    curve.enter().append('path').classed('curve', true);
+    curve.attr('d', computePath);
+    curve.exit().remove();
+
+    // Control and Curve Points
+    circles.enter().append('circle').classed('point', true);
+
+    circles
+      .attr('cx', function(d) { return xScale(d.x); })
+      .attr('cy', function(d) { return yScale(d.y); })
+      .attr('r', 6)
+      .each(function(d) { d3.select(this).classed(d.type, true); });
+
+    circles.exit().remove();
+
+    // Path String
+    var text = d3.selectAll('pre').data([points]);
+    text.enter().append('text').classed('path', true);
+    text
+      .attr('x', margin + 5)
+      .attr('y', margin - 5)
+      .text(computePathText);
+    text.exit().remove();
+
+    // Drag behaviour
+    var drag = d3.behavior.drag()
+      .on('drag', function(d, i) {
+
+        var cx = +d3.select(this).attr('cx'),
+            cy = +d3.select(this).attr('cy');
+
+        cx += d3.event.dx;
+        cy += d3.event.dy;
+
+        // Update the point coordinates
+        d.x = xScale.invert(cx);
+        d.y = yScale.invert(cy);
+
+        // Update the points, tension lines, Bezier curve and
+        // SVG path string
+        circles
+          .attr('cx', function(d) { return xScale(d.x); })
+          .attr('cy', function(d) { return yScale(d.y); });
+
+        lines
+          .attr('x1', function(d) { return xScale(d[0].x); })
+          .attr('y1', function(d) { return yScale(d[0].y); })
+          .attr('x2', function(d) { return xScale(d[1].x); })
+          .attr('y2', function(d) { return yScale(d[1].y); });
+
+        curve.attr('d', computePath);
+        text.text(computePathText);
+      });
+
+    // Attach the drag behaviour to the points
+    circles.call(drag);
+  </script>
+
+</body>
+</html>

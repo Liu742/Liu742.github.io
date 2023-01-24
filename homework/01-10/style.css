@@ -12,6 +12,7 @@ body
 }
 .center
 /* how to name it: .xxx  xxx keep the same as before */
+/* this is a "class" attribute use .xxx and class="xxx" */
 {
     display:block;
     margin-left: auto;
@@ -19,3 +20,10 @@ body
     width: 50%;
 }
 
+.style01
+{
+    color:bisque;
+    padding:40px;
+    background-color: #b9c1c0;
+
+}
