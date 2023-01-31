@@ -3,66 +3,147 @@
     <head>
         <meta charset="utf-8"/>
         <title>JavaScript</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
+
+        <style>
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body{
+                min-height: 100vh;
+                background: linear-gradient(#d1cfd4,#363636) ;
+            }
+
+            .imgPosition{
+                width: 40%;
+                height: 40%;
+                position: absolute;
+                top: 200px;
+                left: 50px;
+                box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+                box-sizing: border-box;
+            }
+
+            .button-01 {
+                align-items: center;
+                appearance: none;
+                background-color: #FCFCFD;
+                border-radius: 4px;
+                border-width: 0;
+                box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+                box-sizing: border-box;
+                color: #36395A;
+                cursor: pointer;
+                display: inline-flex;
+                font-family: "JetBrains Mono",monospace;
+                height: 48px;
+                justify-content: center; 
+                line-height: 1;
+                list-style: none;
+                overflow: hidden;
+                padding-left: 16px;
+                padding-right: 16px;
+                text-align: left;
+                text-decoration: none;
+                transition: box-shadow .15s,transform .15s;
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: manipulation;
+                white-space: nowrap;
+                will-change: box-shadow,transform;
+                font-size: 18px;
+            }
+
+            .button-01:focus {
+                box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+            }
+
+            .button-01:hover {
+                box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+                transform: translateY(-2px);
+            }
+            
+            .button-01:active {
+                box-shadow: #D6D6E7 0 3px 7px inset;
+                transform: translateY(2px);
+            }
+
+            #section1 {
+            height: 800px;
+            }
+
+            #section2 {
+            height: 600px;
+            }
+            
+        </style>
     </head>
 
     <body>
-        <div class = "slideshow-container">
-           
-            <div class = "mySlides fade">
-                <div class = "numbertext">1/3</div>
-                <img src = " " style = "width:100%">
-                <div class = "text"> Sunshine </div>
-            </div>
+        <a href = "https://liu742.github.io/">back to homepage</a>
 
-            <div class = "mySlides fade">
-                <div class = "numbertext">2/3</div>
-                <img src = " " style = "width:100%">
-                <div class = "text"> Casino </div>
-            </div>
+        <div class="main" id="section1">
+            <img id="myImg" src="https://raw.githubusercontent.com/Liu742/Liu742.github.io/38a5a58dd941e44979c59c1d7221ae5b482e749c/homework/01-24/images/rise%20program%20-%20title.png" class="imgPosition" >
 
-            <div class = "mySlides fade">
-                <div class = "numbertext">2/3</div>
-                <img src = " " style = "width:100%">
-                <div class = "text"> Casino </div>
-            </div>
+            <button id="btn" class="button-01" role="button" onclick="changeImg1()" style="position:absolute; top: 465px; left: 590px;">
+                Plead guilty
+            </button>
 
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            <button id="btn2" class="button-01" role="button" onclick="changeImg2()" style="position: absolute; top: 465px; left: 790px;">
+                Plead not guilty
+            </button>
+
+            <button id="btn3" class="button-01" role="button" onclick='window.location="#section2"' style="position: absolute; top: 465px; left: 720px; display: none;">
+                Join RISE
+            </button>
+
+            <button id="btn4" class="button-01" role="button" onclick="refresh()" style="position: absolute; top: 465px; left: 720px; display: none;">
+                Restart
+            </button>
 
         </div>
-        <br>
 
-        <script>
-           let slideIndex = 1;
-showSlides(slideIndex);
+        <div class="main" id="section2" style="display: none">
+            <h2 align="center"; style="font-family: 'Courier New', Courier, monospace; font-size: 3rem;">R.I.S.E.</h2>
 
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
+            <P style="font-family:'Courier New', Courier, monospace; color:rgb(255, 255, 255); text-align:justify; font-size: 1.5rem; text-indent: 2em; margin:35px">
+                brief introducion, schedule, timeline, etc
+            </P>
+          </div>
 
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
+        <script> 
+            function changeImg1() {
+            document.getElementById("myImg").src = "https://github.com/Liu742/Liu742.github.io/blob/main/homework/01-24/images/rise%20program%20-%2001.png?raw=true";s
+            }
 
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-}
-        </script>
+            function changeImg2() {
+            document.getElementById("myImg").src = "https://github.com/Liu742/Liu742.github.io/blob/main/homework/01-24/images/rise%20program%20-%2002.png?raw=true";s
+            }
+
+            const btn = document.getElementById('btn');
+            btn.addEventListener('click', () => {
+            btn.style.visibility = 'hidden';
+            btn2.style.visibility = 'hidden';
+            btn3.style.display = 'block' ;
+            });
+
+            const btn2 = document.getElementById('btn2');
+            btn2.addEventListener('click', () => {
+            btn.style.visibility = 'hidden';
+            btn2.style.visibility = 'hidden';
+            btn4.style.display = 'block' ;
+            });
+
+            const btn3 = document.getElementById('btn3');
+            btn3.addEventListener('click', () => {
+                section2.style.display = 'block';
+            });
+
+            function refresh() {
+                location.reload();
+            }
+         </script>
+
 
     </body>
 </html>
