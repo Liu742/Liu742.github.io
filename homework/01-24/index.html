@@ -85,7 +85,12 @@
         <div class="main" id="section1">
             <img id="myImg" src="https://raw.githubusercontent.com/Liu742/Liu742.github.io/38a5a58dd941e44979c59c1d7221ae5b482e749c/homework/01-24/images/rise%20program%20-%20title.png" class="imgPosition" >
 
-            <button id="btn" class="button-01" role="button" onclick="changeImg1()" style="position:absolute; top: 465px; left: 590px;">
+            <p id="text1" style="position: absolute; top: 200px; left: 550px; font-family:'Courier New', Courier, monospace; font-size: 1.25rem; text-indent: 2em; ">
+                You speak with your lawyer, you have two options.
+            </p>
+
+
+            <button id="btn" class="button-01" role="button" onclick="changeImg1(), changeText1()" style="position:absolute; top: 465px; left: 590px;">
                 Plead guilty
             </button>
 
@@ -125,6 +130,7 @@
             btn.style.visibility = 'hidden';
             btn2.style.visibility = 'hidden';
             btn3.style.display = 'block' ;
+            text1.innerHTML= "You are eligible for the RISE program.";
             });
 
             const btn2 = document.getElementById('btn2');
@@ -132,16 +138,24 @@
             btn.style.visibility = 'hidden';
             btn2.style.visibility = 'hidden';
             btn4.style.display = 'block' ;
+            text1.innerHTML= "You are not eligible for the RISE program."
             });
 
             const btn3 = document.getElementById('btn3');
             btn3.addEventListener('click', () => {
                 section2.style.display = 'block';
+                text1.innerHTML= "You speak with your lawyer, you have two options."
+                
             });
 
             function refresh() {
                 location.reload();
             }
+
+            function changeText1(){
+                document.getElementById("text1").innerHTML = "New text!";
+            }
+  
          </script>
 
 
