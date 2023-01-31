@@ -85,20 +85,20 @@
         <div class="main" id="section1">
             <img id="myImg" src="https://raw.githubusercontent.com/Liu742/Liu742.github.io/38a5a58dd941e44979c59c1d7221ae5b482e749c/homework/01-24/images/rise%20program%20-%20title.png" class="imgPosition" >
 
-            <p id="text1" style="position: absolute; top: 200px; left: 550px; font-family:'Courier New', Courier, monospace; font-size: 1.25rem; text-indent: 2em; ">
+            <p id="text1" style="position: absolute; top: 200px; left: 700px; font-family:'Courier New', Courier, monospace; font-size: 1.25rem; text-indent: 2em; ">
                 You speak with your lawyer, you have two options.
             </p>
 
 
-            <button id="btn" class="button-01" role="button" onclick="changeImg1(), changeText1()" style="position:absolute; top: 465px; left: 590px;">
+            <button id="btn" class="button-01" role="button" onclick="changeImg1(), changeText1()" style="position:absolute; top: 465px; left: 750px;">
                 Plead guilty
             </button>
 
-            <button id="btn2" class="button-01" role="button" onclick="changeImg2()" style="position: absolute; top: 465px; left: 790px;">
+            <button id="btn2" class="button-01" role="button" onclick="changeImg2()" style="position: absolute; top: 465px; left: 950px;">
                 Plead not guilty
             </button>
 
-            <button id="btn3" class="button-01" role="button" onclick='window.location="#section2"' style="position: absolute; top: 465px; left: 720px; display: none;">
+            <button id="btn3" class="button-01" role="button" onclick='window.location="#section2"' style="position: absolute; top: 465px; left: 850px; display: none;">
                 Join RISE
             </button>
 
@@ -144,7 +144,6 @@
             const btn3 = document.getElementById('btn3');
             btn3.addEventListener('click', () => {
                 section2.style.display = 'block';
-                text1.innerHTML= "You speak with your lawyer, you have two options."
                 
             });
 
