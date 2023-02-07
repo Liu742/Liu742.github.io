@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Homework</title>
+        <script src="homework/01-31/scripts/123.js"></script>
+        <link rel="stylesheet" href="style31.css">
+
+        <!-- load the d3.js library v7 -->
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    </head>
+
+    <body>
+
+        <div id = "HL">
+            JS libraries, <br>
+            D3.js and Data Manipulation
+        </div>
+<!-- 
+        <p>
+            this an a
+        </p>
+        <p>
+            the d3 function
+        </p>
+        <p>
+            123
+        </p> -->
+
+        <div>
+            <button onclick="drawCircles(data1)">Data 1</button>
+        </div>
+
+        <div>
+            <svg id="data-viz">
+
+            </svg>
+        </div>
+       <!-- <script>
+        var page_title = d3.select('#HL');
+
+
+        // // change individual element style
+        // // (attribute, value)
+            // page_title.style("color", "blue");
+            // page_titile.style("font-size", "60px");
+
+        // chain multiple changes one after the other
+        page_title.style("color","green")
+            .style("background-color", "pink")
+            .style("font-size", "50px");
+        // ; only in the last line
+
+        page_title.attr("class","comicText");
+
+        // use selectAll to change multiple element styles or attributes
+
+        d3.selectAll("p").style ("text-align", "center")
+            .attr("class", "comicText");
+
+        // illustrate how to change svg elemetns 
+
+        
+       </script> -->
+       
+
+       <!-- <div>
+
+        <svg width="760" height="200" id="data-viz">
+            <rect width="760" height="200" style="fill:white; stroke-width:1; stroke:black" />
+
+            <circle/>
+            <circle cx="120"/>
+            <circle cx="240"/>
+            <circle cx="360"/>
+            <circle cx="480"/> 
+
+        </svg>
+        </div> -->
+
+
+
+        <script>
+            // var allCircles = d3.selectAll("circle")
+            //     .style("fill", "green")
+            //     .attr("cy","120")
+            //     .attr("r","30");
+
+            // data array 1
+            // this is a data array: an array with data points
+           
+           
+            var data1 = [
+                {
+                country:"usa",
+                value: 12345678
+                },
+                {country:"mex",
+                value: 23456789
+                }
+            ];
+
+            var data2 = [
+                {
+                country:"chn",
+                value: 87654321
+                },
+                {country:"mex",
+                value: 98765432
+                }
+            ];
+
+            var data3 = [
+                {
+                country:"chn",
+                value: 87654321
+                },
+                {country:"mex",
+                value: 98765432
+                },
+                {
+                country:"usa",
+                value: 11223344
+                },
+            ]
+        
+            // function that draw circles using data array 
+
+          
+            function drawCircles(dataArray){
+                 // here circles is an empty container, it waits for svg shapes
+                var circles = d3.select("#data-viz")
+                                .selectAll("circle")
+                                .data(dataArray, function(d){
+                                    return d.country;
+                                });
+            }
+
+            // enterring circles
+
+            circles.enter().append("circle")
+
+                    .attr("fill", function(d){
+                        if (d.country == "usa"){
+                            return "blue";
+
+                        }
+                    })
+                    .attr("id", function(d){
+                        return d.country;
+                    })
+                    .attr("cy","100")
+                    .attr("cx","ramdonPosition")
+                    .attr("r","0") 
+                    // start from 0
+                    .trasition().duration(1000)
+                    .attr("r","25")
+
+            // updating circles 
+            circles.trasition().duration(1000)
+                    .attr("cx", ramdonPosition);
+
+            // exitng circles 
+            circles.exit()
+                    .trasition().duration(1000)
+                    .attr("r", "0")
+                    .remove();
+
+        </script>
+
+    </body>
+
+
+</html>
