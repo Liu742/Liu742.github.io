@@ -1,67 +1,6 @@
-/*
-
-    ARTG5330 Visualization Technologies 1
-    February 21, 2023
-    Spring Semester
-    Week 7
-
-    - What is the "./data/gapminder.csv" inside of the parentheses 
-    for d3.csv() referring to?
-
-    It is referring to a dataset given in csv filetype provided by
-    Gapminder that is stored locally inside the folder called "data".
-    You need to provide the exact local path to that csv file to
-    fetch it with the d3.csv() method.
-
-    - The parameter named `data` inside of the function expression .then()
-
-    The parameter named `data` binds to the csv file
-    you fetch with the d3.csv method. Thus, it refers
-    to the gapminder.csv file.
-
-    - What kind of JavaScript data structure is `data`?
-
-    An array of objects.
-
-    - Where does the entire d3.csv().then() pattern
-        open and close in this document?
-
-    Use the VSCode interface to locate the opening
-    and closing of the d3.csv().then() pattern.
-
-    You may find it useful to examine the contents
-    of `data` with console.log(data).
-
-*/
 
 d3.csv("./data/gapminder.csv").then(function(data) {
 
-    /*
-    1. DEFINE DIMENSIONS OF SVG + CREATE SVG CANVAS
-
-        - What is document.querySelector("#chart") doing?
-
-        The document.querySelector() method is returning the
-        FIRST element within your html document that matches the
-        specified CSS selector string, i.e., the ID "#chart". 
-        See here for more info on CSS selectors: 
-        https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors
-
-        - `clientWidth` and `clientHeight` are properties of
-            elements in the DOM (Document Object Model).
-            What do these properties measure?
-
-        These properties measure the inner width and inner height
-        of an HTML element in pixels. In this example, they are 
-        measuring the width and height of the div element in the html page
-        that encapsulates the chart. Note that these values are calculated
-        according to how the chart is displayed in the browser. Thus, the 
-        values will change if you resize your browser's window. You can
-        test this behavior using console.log() prints.
-
-        Note: document.clientWidth is different from window.innerWidth
-        The d
-    */
 
     const width = document.querySelector("#chart").clientWidth;
     const height = document.querySelector("#chart").clientHeight;
@@ -427,3 +366,5 @@ d3.csv("./data/gapminder.csv").then(function(data) {
         .text("GDP ($)");
 
 });
+
+
