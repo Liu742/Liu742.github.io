@@ -1,0 +1,5 @@
+School enrollment, preprimary(%gross)
+https://databank.worldbank.org/metadataglossary/world-development-indicators/series/SE.PRE.ENRR
+
+School enrollment, tertiary (% gross)
+https://databank.worldbank.org/metadataglossary/world-development-indicators/series/SE.TER.ENRR#:~:text=Gross%20enrollment%20ratio%20for%20tertiary,education%2C%20and%20multiplying%20by%20100.

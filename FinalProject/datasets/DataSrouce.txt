@@ -1,0 +1,18 @@
+Education
+1. School enrollment, preprimary (% gross) (female)
+http://api.worldbank.org/v2/country/all/indicator/SE.PRE.ENRR.FE;SE.PRE.ENRR.MA;SE.PRE.ENRR?source=14
+
+2. School enrollment, primary(% gross) (female)
+http://api.worldbank.org/v2/country/all/indicator/SE.PRM.NENR.FE;SE.PRM.NENR.MA;SE.PRM.NENR;SE.PRM.ENRR.FE;SE.PRM.ENRR.MA;SE.PRM.ENRR?source=14
+https://genderdata.worldbank.org/indicators/se-prm-enrr/?grossNet=Gross
+
+3. School enrollment, secondary(% gross) (female)
+https://genderdata.worldbank.org/indicators/se-sec-enrr?grossNet=Gross
+http://api.worldbank.org/v2/country/all/indicator/SE.SEC.NENR.FE;SE.SEC.NENR.MA;SE.SEC.NENR;SE.SEC.ENRR.FE;SE.SEC.ENRR.MA;SE.SEC.ENRR?source=14
+
+4. School enrollment, tertiary(% gross) (female)
+https://genderdata.worldbank.org/indicators/se-ter-enrr/
+http://api.worldbank.org/v2/country/all/indicator/SE.TER.ENRR.FE;SE.TER.ENRR.MA;SE.TER.ENRR?source=14
+
+z
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
