@@ -7,10 +7,40 @@
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="scripts/script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="style/style.css">
 
     <style>
+        .chartMenu {
+            width: 100vw;
+            height: 40px;
+            background: #1A1A1A;
+            color: rgba(54, 162, 235, 1);
+        }
+
+        .chartMenu p {
+            padding: 10px;
+            font-size: 20px;
+        }
+
+        .chartCard {
+            width: 100vw;
+            height: calc(100vh - 40px);
+            background: rgba(54, 162, 235, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chartBox {
+            width: 700px;
+            padding: 20px;
+            border-radius: 20px;
+            border: solid 3px rgba(54, 162, 235, 1);
+            background: white;
+        }
+
         .button-01 {
             align-items: center;
             appearance: none;
@@ -91,12 +121,15 @@
             A paragraph on gender gap in school enrollment.
         </p>
         <p class="center" style="text-indent:20px">
-            After decades of hard work, globally, primary school enrollment rates are getting closer to equal for girls and boys.
+            After decades of hard work, globally, primary school enrollment rates are getting closer to equal for girls
+            and boys.
         </p>
 
         <div class="flourish-embed flourish-slope" data-src="visualisation/13148148">
             <script src="https://public.flourish.studio/resources/embed.js"></script>
         </div>
+
+
 
         <p class="center" style="text-indent:20px">
             But while enrollment rates are similar – in fact, two-thirds of all countries have reached gender parity in
@@ -120,6 +153,101 @@
         <img class="center" src="media/image placeholder.jpg">
         <p style="text-align: center"><i>Animation</i></p>
     </div>
+
+    <div>
+        <p>
+            While there are similar rates for primary completion globally (90% male, 89% female), in low-income
+            countries, female school completion is lower at the secondary school level.
+        </p>
+    </div>
+
+    <div class="chartCard">
+        <div class="chartBox">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+    <script>
+
+        // female datapoint coverter
+        const female = [36.7, 35.10, 34.20, 12.30, 25.60];
+        const femaleData = [];
+        female.forEach(element => femaleData.push(element * -1));
+        console.log(femaleData);
+
+        // setup 
+        const data = {
+            labels: ['Afghanistan', "Cote d'lvoire", 'Pakistan', 'Chad', 'Guinea'],
+            datasets: [{
+                label: 'Male',
+                data: [62.90, 45.30, 40.40, 25.40, 38.70],
+                backgroundColor: [
+                    'rgba(255, 206, 86, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 206, 86, 1)',
+                ],
+                borderWidth: 1
+            }, {
+                label: 'Female',
+                data: femaleData,
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)',
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const tooltip = {
+            yAlign: 'bottom',
+            titleAlign: 'center',
+            callbacks: {
+                label: function (context) {
+                    return `${context.dataset.label} ${Math.abs(context.raw)}`;
+                }
+            }
+        };
+
+        // config 
+        const config = {
+            type: 'bar',
+            data,
+            options: {
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        stacked: true,
+                        ticks: {
+                            callback: function (value, index, values) {
+                                return Math.abs(value);
+                            }
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        stacked: true
+                    }
+                },
+                plugins: {
+                    tooltip: tooltip
+                }
+            }
+        };
+
+        // render init block
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+
+        // Instantly assign Chart.js version
+        const chartVersion = document.getElementById('chartVersion');
+        chartVersion.innerText = Chart.version;
+    </script>
+
 
     <div id="section2">
         <h2 style="text-align: center">The Correlation</h2>
