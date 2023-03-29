@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="./styles/style.css">
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <style>
             * {
@@ -97,7 +96,6 @@
         </div>
 
         
-        <script src="scripts/script.js"></script>
         <script>
             /*
 
@@ -271,14 +269,14 @@ function drawScatterPlot(data) {
         .attr("class","axisLabel")
         .attr("x", width/2)
         .attr("y", height-margin.bottom/2)
-        .text("School enrollment, Tertiary, Female");
+        .text("School enrollment rate, Tertiary, Female (%)");
 
     const yAxisLabel = svg.append("text")
         .attr("class","axisLabel")
         .attr("transform","rotate(-90)")
         .attr("x",-height/2)
         .attr("y",margin.left/2)
-        .text("Labor participation rate");
+        .text("Labor participation rate (%)");
 
     const otherText = svg.append("text")
         .attr("class", "chartText")
