@@ -21,3 +21,7 @@ I have used data from the World Bank, which includes datasets on primary school 
 <p>
 The present version is not optimized for mobile devices. Kindly access this webpage using a computer or an alternative device.
 </p>
+
+## Writeup
+
+Click <a href="https://github.com/Liu742/Liu742.github.io/blob/main/FinalProject/Final%20Project%20Writeup.pdf">here</a> to see the project writeup.
