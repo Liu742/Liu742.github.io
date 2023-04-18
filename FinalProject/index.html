@@ -2,227 +2,767 @@
 <html>
 
 <head>
-    <meta charset=”utf-8” />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Those girls who left school</title>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="scripts/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="style/style.css">
+
     <style>
-        * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+        #scrolly {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            padding: 1rem;
+            background-color: rgb(255, 255, 255);
+
+        }
+
+        #scrolly>* {
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+        }
+
+        article {
+            position: relative;
+            padding: 0;
+            max-width: 25rem;
+        }
+
+        figure {
+            position: -webkit-sticky;
+            position: sticky;
+            width: 100%;
+            margin: 0;
+            -webkit-transform: translate3d(0, 0, 0);
+            -moz-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            z-index: 0;
+        }
+
+        figure p {
+            text-align: left;
+            padding: 1rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -moz-transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            font-weight: 400;
+            color: #000000;
+        }
+
+        .step {
+            margin: 0 auto 2rem auto;
+            background-color: rgb(255, 255, 255, 0.8);
+            color: #3b3b3b;
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step.is-active {
+            background-color: rgb(255, 255, 255, 0.8);
+            color: #3b3b3b;
+        }
+
+        .step p {
+            line-height: 1.8;
+            font-size: 18px;
+            font-family: "Georgia", serif;
+            text-align: left;
+        }
+
+        .scrollPic {
+            width: 100%;
+            border-style: double;
+        }
+
+        *, *::before, *::after {
+  box-sizing: inherit;
 }
 
-body {
-    min-height: 100vh;
-    width: 100%;
-    overflow-x: hidden;
+
+.bumper {
+  text-align: center;
 }
 
-.container {
-    padding: calc(8px + 1.5625vw) calc(100px + 3.125vw);
+.horiContainer {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
 }
 
-div {
-    padding: calc(8px + 1.5625vw) calc(16px + 3.125vw);
+.space-holder {
+  position: relative;
+  width: 100%;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.horizontal {
+  position: absolute;
+  height: 100%;
+  will-change: transform;
+}
+
+.cards {
+  position: relative;
+  height: 100%;
+  padding: 0 0 0 150px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.sample-card {
+  position: relative;
+  height: 300px;
+  width: 500px;
+  margin-right: 75px;
+  margin-top: -10%;
+  flex-shrink: 0;
 }
 
 
-h1 {
-    text-align: center;
-    font-size: 4em;
-}
-
-h2 {
-    font-size: 1.5em;
-}
-
-.center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
-}
-
-.container p {
-line-height: 1.8;
-font-size: 18px;
-padding:20px 10em 0px 10em;
-}
-
-#section1{
-    min-height: 100vh;
-
-    background-color: white;
-}
-
-#section2{
-    min-height: 100vh;
-    background-color: #dcf1e4;
-}
-
-#section3{
-    min-height: 100vh;
-    background-color: #dcf1e4;
-}
-
-.containerButton { 
-    height: 100px;
-    position: relative;
-  }
-
-.buttonCenter {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translate(-50%, -50%);
-}
-.button-01 {
-    align-items: center;
-    appearance: none;
-    background-color: #FCFCFD;
-    border-radius: 4px;
-    border-width: 0;
-    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
-    box-sizing: border-box;
-    color: #36395A;
-    cursor: pointer;
-    display: inline-flex;
-    font-family: "JetBrains Mono", monospace;
-    height: 48px;
-    justify-content: center;
-    line-height: 1;
-    list-style: none;
-    overflow: hidden;
-    padding-left: 16px;
-    padding-right: 16px;
-    text-align: left;
-    text-decoration: none;
-    transition: box-shadow .15s, transform .15s;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    will-change: box-shadow, transform;
-    font-size: 18px;
-}
-
-.button-01:focus {
-    box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
-}
-
-.button-01:hover {
-    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
-    transform: translateY(-2px);
-}
-
-.button-01:active {
-    box-shadow: #D6D6E7 0 3px 7px inset;
-    transform: translateY(2px);
-}
-
-.chartMenu {
-    width: 100vw;
-    height: 40px;
-    background: #1A1A1A;
-    color: rgba(54, 162, 235, 1);
-}
-
-.chartMenu p {
-    padding: 10px;
-    font-size: 20px;
-}
-
-.chartCard {
-    width: 100vw;
-    height: calc(60vh - 40px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.chartBox {
-    width: 700px;
-    padding: 20px;
-    border-radius: 20px;
-    border: solid 3px rgba(54, 162, 235, 1);
-    background: white;
-}
     </style>
 </head>
 
 <body>
+    <main>
+        <div class="bumper">
+            <div id="section1">
 
-    <div id="section1">
-        <div class="container">
+                <div class="container">
 
-            <img class="center" src="media/female school - head image 4.png">
+                    <img class="center" src="media/female school - head image 4.png">
 
-            <h1>Those girls who left school</h1>
+                    <h1>Those girls who left school</h1>
 
-            <p style="text-align: left; text-indent: 2em;">
-                Significant progress has been made in closing gender gaps worldwide in primary and secondary enrollment
-                rates.<br><br>
-            </p>
-            <p style="text-align: left; text-indent: 2em;">
-                However, girls still have lower expected years of schooling than boys in some regions. Particularly in
-                low-income countries, females have lower graduation rates than males at all levels of education.
-            </p>
-            <div class="containerButton">
-                <div class="buttonCenter" onclick='window.location="#section3"'>
-                    <button class="button-01">Explore</button>
+                    <p>
+                        Exmain female education related data and explore the various factors that influence these
+                        numbers.
+                        <br>
+                        Empowering girls through education is crucial for promoting gender equality, reducing poverty,
+                        and fostering sustainable development.
+                        <br>
+                        By presenting this data, the goal is to raise awareness and inspire action to make a lasting
+                        impact on the lives of girls and women everywhere. Explore the data-driven insights and join the
+                        efforts in creating a better future for all.
+                    </p>
+                    <div class="containerButton">
+                        <div class="buttonCenter" onclick='window.location="#section2"'>
+                            <button class="button-01">Explore</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="section2">
+
+                <div class="container">
+
+
+                    <p>
+                        After decades of hard work, globally, primary school enrollment rates are getting closer to
+                        equal for
+                        girls and boys.
+                    </p>
+                </div>
+                <section id="scrolly">
+                    <article>
+                        <div class="step" data-step="1">
+                            <p>From 2001 to 2018, most regions experienced an upward trend in female primary education
+                                enrollment rates, indicating global progress in access to education for girls. </p>
+                        </div>
+                        <div class="step" data-step="2">
+                            <p>North America consistently held the
+                                highest enrollment rates, although it saw a slight decline after 2010. </p>
+                        </div>
+                        <div class="step" data-step="3">
+                            <p>South Asia and the Middle
+                                East &
+                                North Africa regions demonstrated the most significant growth during this period. In
+                                contrast,
+                                Sub-Saharan Africa had the lowest enrollment rates, with rapid growth between 2001 and
+                                2009 but
+                                missing
+                                data thereafter.</p>
+                        </div>
+                        <div class="step" data-step="4">
+                            <p> Latin America and the Caribbean observed an increase in enrollment rates from
+                                2001 to
+                                2012, followed by fluctuation and a slight decline until 2018.</p>
+                        </div>
+                    </article>
+
+                    <figure>
+                        <img class="scrollPic picContainer" src="media/chartScreenshot/chart1.png"
+                            alt="Description of the image">
+                    </figure>
+
+                </section>
+            </div>
+
+            <div id="section3">
+
+                <div class="container">
+                    <h2> A Closer Look at School Enrollment Trends</h2>
+                    <p>
+                        When comparing the analysis of female primary education enrollment rates for regions excluding
+                        high-income countries to the overall global situation, we can observe some similarities and
+                        differences.
+                    </p>
+                    <p>
+                        In both analyses, an upward trend in female primary education enrollment rates is evident,
+                        signaling
+                        progress in girls' access to education worldwide.
+                    </p>
+                </div>
+                <div class="main-container">
+                    <div class="chart-container-1">
+                        <canvas id="lineChart-1"></canvas>
+                    </div>
+                    <div class="chart-container-1">
+                        <canvas id="lineChart-2"></canvas>
+                    </div>
+                </div>
+                <div class="container">
+                    <p>
+                        The most significant growth in the global analysis is observed in South Asia and the Middle East
+                        & North Africa regions, which is similar to the analysis that excludes high-income countries,
+                        where the Middle East & North Africa region also demonstrated significant growth.
+                    </p>
+                    <p>
+                        Sub-Saharan Africa had the lowest enrollment rates in both analyses. In the global analysis, the
+                        region experienced rapid growth between 2001 and 2009 but lacked data thereafter, while in the
+                        analysis that excludes high-income countries, the growth was from 58.33% to 72.41% during the
+                        same period.
+                    </p>
+                </div>
+                <div class="container">
+                    <h2>From Achievements to Challenges:
+                        <br> Examining Gender Disparities in Education</h2>
+                    <p>
+                        But while enrollment rates are similar – in fact, two-thirds of all countries have reached
+                        gender parity
+                        in primary school enrollment – completion rates for girls are lower in low-income countries
+                        where 63% of
+                        female primary school students complete primary school, compared to 67% of male primary school
+                        students.
+                        This leads to gender gap in secondary school enrollment.
+                    </p>
+                    <div>
+                        <canvas id="barChart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div id="section3">
+        <section id="section4" class="horiContainer">
+            <div class="space-holder">
+                <div class="sticky">
+                    <div class="horizontal">
+                        <section role="feed" class="cards">
+                            <article class="sample-card"><img style="width: 100%;"src="media/poster/1.png"></article>
+                            <article class="sample-card"><img style="width: 100%;"src="media/poster/2.png"></article>
+                            <article class="sample-card"><img style="width: 100%;"src="media/poster/3.png"></article> <article class="sample-card"><img style="width: 100%;"src="media/poster/4.png"></article>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="container">
-            <h2>Gendet Gap in Secondary School enrollment</h2>
-            <p style="text-align: left; text-indent: 2em;">
-                While there are similar rates for primary completion globally (90% male, 89% female), in some countries,
-                particularly the few listed in the chart below, there are large gender gaps in secondary school
-                enrollment.
+        <div class="bumper">
+            <div class="section5">
+            <div class="container">
+                <h2>Embracing the Journey Towards Educational Gender Equality</h2>
+                <p>
+                In conclusion, addressing gender disparities in education is a critical step towards achieving equality for all. As we have explored the achievements made in promoting gender equality in education, it is essential to recognize the ongoing challenges that still exist in various parts of the world. 
+                <p>
+                    By understanding the importance of this issue, we can continue to work towards a future where every child, regardless of their gender, has equal access to quality education. 
+                <p>
+                    If you'd like to learn more about this subject and further engage in the discussion, please feel free to click on the provided links. 
+                </p>
+                <p>
+                    Together, we can make a positive difference in the lives of girls and boys around the world.
+                </p>
             </p>
-        </div>
 
-        <div class="chartCard">
-            <div class="chartBox">
-                <canvas id="myChart"></canvas>
+            <div class="containerButton">
+                <div class="buttonCenter" onclick='window.location="#section1"'>
+                    <button class="button-01">Back to Top</button>
+                </div>
+            </div>
+
+            <p style="color: grey; font-size: 12px;">
+                Sources: <a href="https://genderdata.worldbank.org/">World Bank</a>
+                <br>
+                Notes: All data presented in this article are sourced from the World Bank's most recent available year of data. For some countries with missing data for specific years, the average of the preceding and following years' data has been used as a substitute.
+            </p>
             </div>
         </div>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
-        <script>
+         
 
-            // female datapoint coverter
-            const female = [36.7, 35.10, 34.20, 12.30, 25.60];
-            const femaleData = [];
-            female.forEach(element => femaleData.push(element * -1));
-            console.log(femaleData);
+        </div>
 
-            // setup 
-            const data = {
-                labels: ['Afghanistan', "Cote d'lvoire", 'Pakistan', 'Chad', 'Guinea'],
+           
+
+
+
+    </main>
+
+
+
+    <!-- <div class='debug'></div> -->
+    <script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
+    <script src="scripts/scrollama.min.js"></script>
+    <script>
+        // using d3 for convenience
+        var main = d3.select("main");
+        var scrolly = main.select("#scrolly");
+        var figure = scrolly.select("figure");
+        var article = scrolly.select("article");
+        var step = article.selectAll(".step");
+
+        var images = ["media/chartScreenshot/chart1.png", "media/chartScreenshot/chart2.png", "media/chartScreenshot/chart3.png", "media/chartScreenshot/chart4.png"];
+
+        // initialize the scrollama
+        var scroller = scrollama();
+
+        // generic window resize listener event
+        function handleResize() {
+            // 1. update height of step elements
+            var stepH = Math.floor(window.innerHeight * 0.65);
+            step.style("height", stepH + "px");
+
+            var figureHeight = window.innerHeight / 2;
+            var figureMarginTop = (window.innerHeight - figureHeight) / 2;
+
+            figure
+                .style("height", figureHeight + "px")
+                .style("top", figureMarginTop + "px");
+
+            // 3. tell scrollama to update new element dimensions
+            scroller.resize();
+        }
+
+        // scrollama event handlers
+        function handleStepEnter(response) {
+            console.log(response);
+            // response = { element, direction, index }
+
+            // add color to current step only
+            step.classed("is-active", function (d, i) {
+                return i === response.index;
+            });
+
+            // update graphic based on step
+            figure.select("img").attr("src", images[response.index]);
+        }
+
+        function init() {
+
+            // 1. force a resize on load to ensure proper dimensions are sent to scrollama
+            handleResize();
+
+            // 2. setup the scroller passing options
+            //      this will also initialize trigger observations
+            // 3. bind scrollama event handlers (this can be chained like below)
+            scroller
+                .setup({
+                    step: "#scrolly article .step",
+                    offset: 0.33,
+                    debug: false
+                })
+                .onStepEnter(handleStepEnter);
+        }
+
+        // kick things off
+        init();
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- script for line chart 1  -->
+    <script>
+        const ctx = document.getElementById('lineChart-1');
+
+        const getOrCreateTooltip = (chart) => {
+            let tooltipEl = chart.canvas.parentNode.querySelector('div');
+
+            if (!tooltipEl) {
+                tooltipEl = document.createElement('div');
+                tooltipEl.style.background = 'rgba(0, 0, 0, 0.7)';
+                tooltipEl.style.borderRadius = '3px';
+                tooltipEl.style.color = 'white';
+                tooltipEl.style.opacity = 1;
+                tooltipEl.style.pointerEvents = 'none';
+                tooltipEl.style.position = 'absolute';
+                tooltipEl.style.transform = 'translate(-50%, 0)';
+                tooltipEl.style.transition = 'all .1s ease';
+
+                const table = document.createElement('table');
+                table.style.margin = '0px';
+
+                tooltipEl.appendChild(table);
+                chart.canvas.parentNode.appendChild(tooltipEl);
+            }
+
+            return tooltipEl;
+        };
+
+        const externalTooltipHandler = (context) => {
+            // Tooltip Element
+            const { chart, tooltip } = context;
+            const tooltipEl = getOrCreateTooltip(chart);
+
+            // Hide if no tooltip
+            if (tooltip.opacity === 0) {
+                tooltipEl.style.opacity = 0;
+                return;
+            }
+
+            // Set Text
+            if (tooltip.body) {
+                const titleLines = tooltip.title || [];
+                const bodyLines = tooltip.body.map(b => b.lines);
+
+                const tableHead = document.createElement('thead');
+
+                titleLines.forEach(title => {
+                    const tr = document.createElement('tr');
+                    tr.style.borderWidth = 0;
+
+                    const th = document.createElement('th');
+                    th.style.borderWidth = 0;
+                    const text = document.createTextNode(title);
+
+                    th.appendChild(text);
+                    tr.appendChild(th);
+                    tableHead.appendChild(tr);
+                });
+
+                const tableBody = document.createElement('tbody');
+                bodyLines.forEach((body, i) => {
+                    const colors = tooltip.labelColors[i];
+
+                    const span = document.createElement('span');
+                    span.style.background = colors.backgroundColor;
+                    span.style.borderColor = colors.borderColor;
+                    span.style.borderWidth = '2px';
+                    span.style.marginRight = '10px';
+                    span.style.height = '10px';
+                    span.style.width = '10px';
+                    span.style.display = 'inline-block';
+
+                    const tr = document.createElement('tr');
+                    tr.style.backgroundColor = 'inherit';
+                    tr.style.borderWidth = 0;
+
+                    const td = document.createElement('td');
+                    td.style.borderWidth = 0;
+
+                    const text = document.createTextNode(body);
+
+                    td.appendChild(span);
+                    td.appendChild(text);
+                    tr.appendChild(td);
+                    tableBody.appendChild(tr);
+                });
+
+                const tableRoot = tooltipEl.querySelector('table');
+
+                // Remove old children
+                while (tableRoot.firstChild) {
+                    tableRoot.firstChild.remove();
+                }
+
+                // Add new children
+                tableRoot.appendChild(tableHead);
+                tableRoot.appendChild(tableBody);
+            }
+
+            const { offsetLeft: positionX, offsetTop: positionY } = chart.canvas;
+
+            // Display, position, and set styles for font
+            tooltipEl.style.opacity = 1;
+            tooltipEl.style.left = positionX + tooltip.caretX + 'px';
+            tooltipEl.style.top = positionY + tooltip.caretY + 'px';
+            tooltipEl.style.font = tooltip.options.bodyFont.string;
+            tooltipEl.style.padding = tooltip.options.padding + 'px ' + tooltip.options.padding + 'px';
+        };
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013',
+                    '2014', '2015', '2016', '2017', '2018'],
+                datasets: [{
+                    label: 'East Asia & Pacific',
+                    data: [94.09031, 94.12122, 94.01758, 94.19893, 94.01109, 93.63552, 94.84807, 94.90434, 95.23213, 95.5121, 95.94855, 95.52392, 95.45252, 95.47628, 95.58924],
+                    borderWidth: 1
+                },
+                {
+                    label: 'Europe & Central Asia',
+                    data: [94.46448, 94.81182, 95.52639, 95.06001, 94.62559, 94.75058, 94.84232, 95.11745, 94.90468, 95.26217, 95.48155, 95.48998, 95.87507, 95.65832, 95.85017, 95.88464, 94.94759, 94.86631],
+                    borderWidth: 1
+                },
+                {
+                    label: 'Latin America & Caribbean',
+                    data: [93, 93.8301, 92.98412, 93.48408, 94.45332, 94.27547, 94.02604, 94.9612, 94.99954, 95.00301, 94.77791, 94.99862, 93.77119, 93.6423, 93.59806, 93.90233, 93.87033, 93.8643],
+                    borderWidth: 1
+                }
+                    ,
+                {
+                    label: 'Middle East & North Africa',
+                    data: [82.13621, 84.38244, 85.07841, 85.99539, 85.82253, 85.99398, 87.76272, 88.59492, 89.32003, 90.90097, 91.32452, 92.68248, 92.03454, 91.52865, 91.49824, 91.61148, 91.80524, 92.14038],
+                    borderWidth: 1
+                }
+                    ,
+                {
+                    label: 'Sub-Saharan Africa',
+                    data: [58.32808, 59.83408, 62.392, 64.41467, 66.64822, 68.665, 70.6711, 72.03732, 72.41319],
+                    borderWidth: 1
+                },
+                {
+                    label: 'North America',
+                    data: [96.35083, 95.36432, 96.19089, 95.57977, 95.83351, 96.59466, 96.75123, 96.8388, 95.90614, 94.05366, 93.63206, 93.23706, 93.33195, 94.10513, 94.78767, 95.2928, 95.02639, 94.86607],
+                    borderWidth: 1
+                },
+                {
+                    label: 'South Asia',
+                    data: [69.21381, 70.51603, 78.03525, 80.53169, 82.34337, 83.82396, 85.65859, 86.17493, 86.91173, 87.00896, 86.37355, 86.67464, 86.87741, 87.21258, 86.75207, 86.98376, 86.9749, 86.84744],
+                    borderWidth: 1
+                }
+                ]
+            },
+
+
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                interaction: {
+                    mode: 'index',
+                },
+                plugins: {
+                    title: {
+                        align: 'center',
+                        display: true,
+                        text: 'Global Female Primary School Enrollment Rate',
+                        font: {
+                            size: 25,
+                            family: 'Arial',
+                        }
+                    },
+                    tooltip: {
+                        enabled: false,
+                        position: 'nearest',
+                        external: externalTooltipHandler
+                    },
+                },
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'year',
+
+                        },
+                    },
+                    y: {
+                        position: 'left',
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'School enrollment, primary'
+                        },
+                        suggestedMin: 55,
+                        suggestedMax: 100,
+                        ticks: {
+                            callback: function (value, index, ticks) {
+                                return value + '%';
+                            }
+                        }
+                    },
+                    y1: {
+                        position: 'right',
+                        display: true,
+                        suggestedMin: 55,
+                        suggestedMax: 100,
+                        ticks: {
+                            callback: function (value, index, ticks) {
+                                return value + '%';
+                            }
+                        }
+                    },
+                }
+            }
+        });
+
+
+    </script>
+
+    <!-- script for line chart 2  -->
+    <script>
+        const ctx2 = document.getElementById('lineChart-2');
+
+
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013',
+                    '2014', '2015', '2016', '2017', '2018'],
+                datasets: [{
+                    label: 'East Asia & Pacific (excluding high income)',
+                    data: [94.09889, 94.14736, 93.99804, 94.19523, 93.97354, 93.56541, 94.82269, 94.86243, 95.18151, 95.50133, 95.92812, 95.49613, 95.44349, 95.46373, 95.51255],
+                    borderWidth: 1
+                },
+                {
+                    label: 'Europe & Central Asia (excluding high income)',
+                    data: [90.71911, 91.76248, 93.71363, 93.3452, 91.89726, 92.08733, 92.30501, 92.55366, 92.21762, 92.9478, 93.13939, 92.91753, 93.35407, 93.21996, 93.54765, 93.69839, 91.79124, 91.67335],
+                    borderWidth: 1
+                },
+                {
+                    label: 'Latin America & Caribbean (excluding high income)',
+                    data: [93.97929, 93.11855, 93.49142, 94.49856, 94.26617, 93.96783, 94.93857, 95.03911, 94.9917, 94.81959, 95.06219, 93.80947, 93.71312, 93.68508, 94.03409, 93.9758, 93.96438],
+                    borderWidth: 1
+                }
+                    ,
+                {
+                    label: 'Middle East & North Africa (excluding high income)',
+                    data: [82.59149, 84.95158, 85.58951, 86.47564, 86.07028, 86.04888, 87.7803, 88.46904, 89.02694, 90.24169, 90.68619, 91.0289, 91.37168, 90.71351, 90.63062, 90.77254, 91.12317, 91.52754],
+                    borderWidth: 1
+                }
+                    ,
+                {
+                    label: 'Sub-Saharan Africa (excluding high income)',
+                    data: [58.32576, 59.83147, 62.38962, 64.4125, 66.64634, 68.66341, 70.66965, 72.03598, 72.41189],
+                    borderWidth: 1
+                }
+                ]
+            },
+
+
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                interaction: {
+                    mode: 'index',
+                },
+                plugins: {
+                    title: {
+                        align: 'start',
+                        display: true,
+                        text: 'Female Primary School Enrollment Rate (excluding high income)',
+                        font: {
+                            size: 30,
+                            family: 'Arial',
+                        }
+                    },
+                    tooltip: {
+                        enabled: false,
+                        position: 'nearest',
+                        external: externalTooltipHandler
+                    },
+                },
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'year',
+
+                        },
+                    },
+                    y: {
+                        position: 'left',
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'School enrollment, primary'
+                        },
+                        suggestedMin: 55,
+                        suggestedMax: 100,
+                        ticks: {
+                            callback: function (value, index, ticks) {
+                                return value + '%';
+                            }
+                        }
+                    },
+                    y1: {
+                        position: 'right',
+                        display: true,
+                        suggestedMin: 55,
+                        suggestedMax: 100,
+                        ticks: {
+                            callback: function (value, index, ticks) {
+                                return value + '%';
+                            }
+                        }
+                    },
+                }
+            }
+        });
+
+
+    </script>
+
+
+    <!-- script for bar chart  -->
+
+    <script>
+        const barChart = document.getElementById('barChart');
+        const footer = (tooltipItems) => {
+            let diff = 0;
+
+            tooltipItems.forEach(function (tooltipItem, index) {
+                if (index > 0) {
+                    diff += tooltipItem.parsed.y - tooltipItems[index - 1].parsed.y;
+                }
+            });
+
+            return 'Gender Gap: ' + Math.abs(diff).toFixed(2) + '%';
+        };
+
+        new Chart(barChart, {
+            type: 'bar',
+            data: {
+                labels: ['Afghanistan', 'Guinea', 'Chad', "Cote d'lvoire", 'Pakistan'],
                 datasets: [{
                     label: 'Male',
-                    data: [62.90, 45.30, 40.40, 25.40, 38.70],
+                    data: [62.90, 38.70, 25.40, 45.30, 40.40],
                     backgroundColor: [
                         'rgba(255, 206, 86, 0.2)',
                     ],
                     borderColor: [
                         'rgba(255, 206, 86, 1)',
                     ],
+
                     borderWidth: 1
-                }, {
+                },
+                {
                     label: 'Female',
-                    data: femaleData,
+                    data: [36.7, 25.60, 12.30, 35.10, 34.20],
                     backgroundColor: [
                         'rgba(75, 192, 192, 0.2)',
                     ],
@@ -230,126 +770,85 @@ padding:20px 10em 0px 10em;
                         'rgba(75, 192, 192, 1)',
                     ],
                     borderWidth: 1
-                }]
-            };
-
-            const tooltip = {
-                yAlign: 'bottom',
-                titleAlign: 'center',
-                callbacks: {
-                    label: function (context) {
-                        return `${context.dataset.label} ${Math.abs(context.raw)}`;
-                    }
                 }
-            };
+                ]
+            },
 
-            // config 
-            const config = {
-                type: 'bar',
-                data,
-                options: {
-                    indexAxis: 'y',
-                    scales: {
-                        x: {
-                            stacked: true,
-                            ticks: {
-                                callback: function (value, index, values) {
-                                    return Math.abs(value);
-                                }
-                            }
-                        },
-                        y: {
-                            beginAtZero: true,
-                            stacked: true
+
+            options: {
+                responsive: true,
+                interaction: {
+                    intersect: false,
+                    mode: 'index',
+                },
+                plugins: {
+                    title: {
+                        align: 'start',
+                        display: true,
+                        text: 'Countries with the largest gender enrollment gaps in secondary education worldwide',
+                        font: {
+                            size: 30,
+                            family: 'Arial',
                         }
                     },
-                    plugins: {
-                        tooltip: tooltip
+                    tooltip: {
+                        callbacks: {
+                            footer: footer,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'year',
+
+                            },
+                        },
+                        y: {
+                            position: 'left',
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'School enrollment, primary'
+                            },
+                            suggestedMin: 55,
+                            suggestedMax: 100,
+                            ticks: {
+                                callback: function (value, index, ticks) {
+                                    return value + '%';
+                                }
+                            }
+                        }
                     }
                 }
-            };
-
-            // render init block
-            const myChart = new Chart(
-                document.getElementById('myChart'),
-                config
-            );
-
-            // Instantly assign Chart.js version
-            const chartVersion = document.getElementById('chartVersion');
-            chartVersion.innerText = Chart.version;
-        </script>
-    </div>
-
-    <div id="section2">
-
-        <div class="container">
-
-            <h2>Primary School enrollment</h2>
-
-            <p style="text-align: left; text-indent: 2em;">
-                After decades of hard work, globally, primary school enrollment rates are getting closer to equal for
-                girls
-                and boys.
-            </p>
-
-            <div class="flourish-embed flourish-slope" data-src="visualisation/13148148">
-                <script src="https://public.flourish.studio/resources/embed.js"></script>
-            </div>
-
-            <p style="text-align: left; text-indent: 2em;">
-                But while enrollment rates are similar – in fact, two-thirds of all countries have reached gender parity
-                in primary school enrollment – completion rates for girls are lower in low-income countries where 63% of
-                female primary school students complete primary school, compared to 67% of male primary school students.
-            </p>
-            <p style="text-align: left; text-indent: 2em;">
-                In low-income countries, secondary school completion rates for girls also continue to lag, with only 36%
-                of
-                girls completing lower secondary school compared to 44% of boys. Upper secondary completion rates have
-                similar disparities in lower income countries, the rate is 26% for young men and 21% for young women.
-                The
-                gaps are starker in countries affected by fragility, conflict, and violence (FCV). In FCV countries,
-                girls
-                are 2.5 times more likely to be out of school than boys, and at the secondary level, are 90% more likely
-                to
-                be out of secondary school than those in non-FCV contexts.
-            </p>
-
-            <div class="flourish-embed flourish-slope" data-src="visualisation/13149242">
-                <script src="https://public.flourish.studio/resources/embed.js"></script>
-            </div>
-
-            <div>
-                <img class="center" src="media/image placeholder.jpg">
-                <p style="text-align: center"><i>Animation</i></p>
-            </div>
+            }
+        });
 
 
-        </div>
-    </div>
+    </script>
 
+    <script>
+        const spaceHolder = document.querySelector('.space-holder');
+        const horizontal = document.querySelector('.horizontal');
+        spaceHolder.style.height = `${calcDynamicHeight(horizontal)}px`;
 
+        function calcDynamicHeight(ref) {
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+            const objectWidth = ref.scrollWidth;
+            return objectWidth - vw + vh + 150; // 150 is the padding (in pixels) desired on the right side of the .cards container. This can be set to whatever your styles dictate
+        }
 
-    <div>
-        <h2 style="text-align: center">The Correlation</h2>
-        <img class="center" src="media/image 2.png">
-        <p style="text-align: center"><i>Map</i></p>
-    </div>
+        window.addEventListener('scroll', () => {
+            const sticky = document.querySelector('.sticky');
+            horizontal.style.transform = `translateX(-${sticky.offsetTop}px)`;
+        });
 
-    <h2 style="text-align: center">The impact</h2>
-    <p class="center" style="text-indent:20px">
-        A paragraph on the impact of gender inequality.
-    </p>
-    <img class="center" src="media/image 3.png">
-
-    <h2 style="text-align: center">The conclusion</h2>
-    <p class="center" style="text-indent:20px">
-        A paragraph on the conclusion.
-    </p>
-
-
-    </div>
-
+        window.addEventListener('resize', () => {
+            spaceHolder.style.height = `${calcDynamicHeight(horizontal)}px`;
+        });
+    </script>
 </body>
 
 </html>

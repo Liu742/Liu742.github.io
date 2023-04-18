@@ -1,13 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700;800&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
 body {
     min-height: 100vh;
     width: 100%;
     overflow-x: hidden;
+    position: relative;
 }
 
 .container {
@@ -22,10 +26,15 @@ div {
 h1 {
     text-align: center;
     font-size: 4em;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 800;
 }
 
 h2 {
-    font-size: 1.5em;
+    font-size: 2em;
+    text-align: center;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 700;
 }
 
 .center {
@@ -39,26 +48,33 @@ h2 {
 line-height: 1.8;
 font-size: 18px;
 padding:20px 10em 0px 10em;
+font-family: "Georgia", serif;
+text-align: left;
 }
 
 #section1{
     min-height: 100vh;
-
     background-color: white;
 }
 
 #section2{
     min-height: 100vh;
-    background-color: #dcf1e4;
+    background-color: white;
 }
 
 #section3{
     min-height: 100vh;
-    background-color: #dcf1e4;
+    background-color: white;
 }
 
+#section5{
+    min-height: 100vh;
+    background-color: white;
+}
+
+/* for explore button  */
+
 .containerButton { 
-    height: 100px;
     position: relative;
   }
 
@@ -114,30 +130,146 @@ padding:20px 10em 0px 10em;
     transform: translateY(2px);
 }
 
-.chartMenu {
-    width: 100vw;
-    height: 40px;
-    background: #1A1A1A;
-    color: rgba(54, 162, 235, 1);
-}
+/* for picture container  */
 
-.chartMenu p {
-    padding: 10px;
-    font-size: 20px;
-}
+.picContainer {
+    border-top-left-radius: 37px 140px;
+    border-top-right-radius: 23px 130px;
+    border-bottom-left-radius: 110px 19px;
+    border-bottom-right-radius: 120px 24px;
+    background-color: #FCFCFD;
+    display: block;
+    position: relative;
+    border: solid 3px #6e7491;
+    padding: 20px 30px;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto 0;
+    font-size: 17px;
+    line-height: 28px;
+    transform: rotate(-1deg);
+    box-shadow: 3px 15px 8px -10px rgba(0, 0, 0, 0.3);
+    transition: all 0.13s ease-in;
+  }
+  
+  .picContainer:hover {
+    transform: translateY(-10px) rotate(1deg);
+    box-shadow: 3px 15px 8px -10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .picContainer:hover .border {
+    transform: translateY(4px) rotate(-5deg);
+  }
+  
+  .border {
+    position: absolute;
+    transition: all 0.13s ease-in;
+  }
+  
+  .border:before,
+  .border:after {
+    color: #515d9c;
+    font-size: 15px;
+    position: absolute;
+  }
+  
+  .tl {
+    position: absolute;
+    left: -50px;
+    top: -63px;
+    font-weight: 600;
+  }
+  
+  .tl:before {
+    content: "37px";
+    left: 120px;
+    top: 30px;
+  }
+  
+  .tl:after {
+    content: "140px";
+    left: 0px;
+    top: 80px;
+  }
+  
+  .tr {
+    right: -50px;
+    top: -63px;
+    font-weight: 600;
+  }
+  
+  .tr:before {
+    content: "23px";
+    left: 0;
+    top: 30px;
+  }
+  
+  .tr:after {
+    content: "130px";
+    left: 130px;
+    top: 80px;
+  }
+  
+  .bl {
+    left: -50px;
+    bottom: -71px;
+    font-weight: 600;
+  }
+  
+  .bl:before {
+    content: "110px";
+    left: 120px;
+    top: -30px;
+  }
+  
+  .bl:after {
+    content: "19px";
+    left: 0px;
+    top: -90px;
+  }
+  
+  .br {
+    right: -50px;
+    bottom: -63px;
+    font-weight: 600;
+  }
+  
+  .br:before {
+    content: "120px";
+    left: 0;
+    top: -30px;
+  }
+  
+  .br:after {
+    content: "24px";
+    right: -10px;
+    top: -80px;
+  }
+  
 
-.chartCard {
-    width: 100vw;
-    height: calc(60vh - 40px);
+/* for chart container  */
+
+
+  
+  .chart-container-1 {
+    height: 60vh;
+    flex: auto auto;
+    width: 50%;
+  }
+  
+  .chart-container-2 {
+    height: 60vh;
+    flex: auto auto;
+    width: 50%;
+  }
+  
+  
+  
+  .main-container {
     display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.chartBox {
-    width: 700px;
-    padding: 20px;
-    border-radius: 20px;
-    border: solid 3px rgba(54, 162, 235, 1);
-    background: white;
-}
+    justify-content: space-between;
+  }
+  
+  .main-container > div {
+      padding: 0px 10px;
+  }
