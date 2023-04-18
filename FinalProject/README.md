@@ -16,3 +16,8 @@ The questions I want to address are: What is the current situation of female edu
 I have used data from the World Bank, which includes datasets on primary school enrollment rates, secondary school enrollment rates, expected years of school, and mean age at first marriage. Additionally, I have incorporated data from the World Bank report titled “COUNT ME IN! World Bank Education: Improving Education Outcomes for Girls and Young Women.”
 
 </p>
+
+## Instruction
+<p>
+The present version is not optimized for mobile devices. Kindly access this webpage using a computer or an alternative device.
+</p>
