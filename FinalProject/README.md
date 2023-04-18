@@ -5,6 +5,7 @@ April, 2023 <br>
 ## Preview
 click to see the webpage
 
+<a href="https://liu742.github.io/FinalProject/index.html"><img src="https://github.com/Liu742/Liu742.github.io/blob/main/FinalProject/preview-image.png?raw=true"></a>
 ## Description
 
 <p>
