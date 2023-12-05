@@ -1,0 +1,188 @@
+/* --------------  LOAD FONTS FROM SERVER ------------------------------ */
+
+@font-face {
+    font-family: "GrotzecCond-Demibold";
+     src: url(https://mediainnovation.camd.northeastern.edu/2021/loveinthetimeofcovid/fonts/GrotzecCond-Demibold3.woff2);
+   }  
+   
+   @font-face {
+    font-family: "GrotzecCond-DemiboldItalic";
+     src: url(https://mediainnovation.camd.northeastern.edu/2021/loveinthetimeofcovid/fonts/GrotzecCond-DemiboldItalic.woff2);
+   }  
+   
+   @font-face {
+    font-family: "LeJeunePoster-Regular";
+     src: url(https://mediainnovation.camd.northeastern.edu/2021/loveinthetimeofcovid/fonts/LeJeunePoster-Regular.otf);
+   } 
+   
+   @font-face {
+    font-family: "LeJeunePoster-RegularItalic";
+     src: url(https://mediainnovation.camd.northeastern.edu/2021/loveinthetimeofcovid/fonts/LeJeunePoster-RegularItalic.otf);
+   }
+   
+   /*-- ------------------ SOME BASIC SITE SPECS -------------------------- */
+   html,
+   body {
+     margin: 0;
+     padding: 0;
+   }
+   * {
+     box-sizing: border-box;
+   }
+   
+   /* ----------------------  HAMBURGER NAV and MENU --------------------------- */
+   
+   a
+   {
+     text-decoration: none;
+     color: #232323;
+     
+     transition: color 0.3s ease;
+   }
+   
+   a:hover
+   {
+     color: #d3222a;
+   }
+   
+   /*
+    * Black bar with logo
+    */
+
+
+
+   /* ----------------------  BASIC CSS FOR ARTCLES ------------------------------ */
+   
+   
+   .container {
+     max-width:  800px;
+   }
+   
+   @media (max-width:550px){
+       .container {
+           width: 95%;
+           margin: 0 auto;
+       }
+   }
+   
+   @media (min-width:551px) {
+       .container {
+           width: 80%;
+           margin: 0 auto;
+       }
+   }
+   
+   @media (min-width:960px){
+       .container {
+           width: 65%;
+           margin: 0 auto;
+       }
+   }
+   
+   .header {
+     text-align: center;
+     font-family: "GrotzecCond-Demibold", "Helvetica", sans-serif;
+       font-weight:300;
+   }
+   
+   .header h1{
+     text-align: center;
+     font-family: "GrotzecCond-Demibold", "Helvetica", sans-serif;
+     font-size: 5em;
+     line-height: 85%;
+       letter-spacing: -1px;
+   }
+   
+   .header h2 {
+         font-family: "Georgia-Italic", serif;
+     font-size: 2em;
+     line-height: 85%;
+       text-align: center;
+       font-weight: 100;
+   }
+   
+   
+   .header h3{
+     font-size: 1.3em;
+     text-transform:uppercase;
+     letter-spacing: 2px;
+     text-align: center;
+   }
+   
+   @media (max-width:550px) {
+       .container p{
+       font-family:"Georgia", serif;
+       color: black;
+       font-size: 0.8em;
+       line-height: 1.5em;
+       }
+   }
+   
+   @media (min-width:551px) {
+       .container p{
+       font-family:"Georgia", serif;
+       color: black;
+       font-size: 1.1em;
+       line-height: 2;
+       }
+   }
+   
+   .container2 {
+    width: 75%;
+    margin: 0 auto;
+   }
+
+   .container3 {
+    width: 30%;
+    margin: 0 auto;
+   }
+
+   .floated-image {
+    float: left;
+    border: 1px solid;
+ }
+
+ .floated-image img {
+    float: left;
+    width: 200px;
+    margin-right:5px;
+ }
+ 
+   img{
+     width: 100%;
+   }
+   
+
+   figure.mifigure {
+       margin:0;
+       
+   }
+   
+   .mifigure figcaption {
+       font-family:"Georgia", serif;
+     color: #666;
+     font-size: 1em;
+     line-height: 1.5em;
+       padding-top: 10px;
+   }
+   
+   @media (max-width:1023px){
+       .photogrid {
+       display: grid;
+       grid-template-columns: auto ;
+       grid-column-gap: 30px;
+   }
+   }
+   
+   @media (min-width:1024px){
+       .photogrid {
+       display: grid;
+       grid-template-columns: auto auto;
+       grid-column-gap: 30px;
+   }
+   }
+   
+  
+   
+   
+   
