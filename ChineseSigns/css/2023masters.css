@@ -299,6 +299,7 @@
         margin: 20px 20px 20px 15%;
         min-width: 400px;
         background-color: rgba(165, 165, 165, 0.057);
+  
 
     }
    }
@@ -312,7 +313,7 @@
    }
    
    .mifigure figcaption {
-       font-family:"Georgia", serif;
+       font-family: Arial, Helvetica, sans-serif;
      color: #666;
      font-size: 1.0em;
      line-height: 1.5em;
@@ -408,6 +409,14 @@ figure p {
   text-align: left;
 }
 
+.step.is-active p{
+  line-height: 1.8;
+  font-size: 18px;
+  font-family: "Georgia", serif;
+  text-align: left;
+  background-color: #fcf5eb;
+}
+
 .scrollPic {
   width: 90%;
 
@@ -423,8 +432,8 @@ box-sizing: inherit;
 text-align: center;
 }
 
-      
-      
+
+
 
       
  
